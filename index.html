@@ -9,9 +9,30 @@
       <h1>Dice Roller</h1>
       {{outlet}}
     </script>
+
     <script type="text/x-handlebars" id="index">
       {{#linkTo 'roll'}}Start rolling dice!{{/linkTo}}
     </script>
+
+    <script type="text/x-handlebars" id="roll">
+      <p>
+        Enter your require dice roll below, for instance "3d6" will
+        roll three six sided dice.
+      </p>
+
+      {{input valueBinding="rollString" placeholder="Enter your dice roll, e.g.'3d6' here"}}
+
+      <hr>
+
+      <h2>Results</h2>
+
+      {{#each roll in content}}
+        I rolled a dice
+      {{else}}
+        No results yet
+      {{/each}}
+    </script>
+
     <script type="text/javascript" src="vendor/jquery.js"></script>
     <script type="text/javascript" src="vendor/handlebars.js"></script>
     <script type="text/javascript" src="vendor/ember.js"></script>
