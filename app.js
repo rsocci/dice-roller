@@ -38,3 +38,57 @@ Roller.RollRoute = Ember.Route.extend({
     controller.set("content", model);
   }
 });
+
+Roller.RollController = Ember.Controller.extend({
+  actions: {
+    rollDice: function() {
+      var roll = this.get("rollString"),
+        content = [],
+        rolls = 0,
+        sides = 0,
+        errors = "",
+        i, rnd, roll_parts;
+
+      // check if anything was typed into text box
+      if (roll === undefined) {
+        this.set("errors", "Please fill out the text box!");
+        return
+      }
+
+      // split up the string around the 'd'
+      roll_parts = roll.split("d");
+
+      if (roll_parts.length !== 2) {
+        // check if given text is correctly formatted
+        errors += "You need to enter a value in the format xdy.";
+      } else {
+        // split up and parse the required numbers
+        rolls = parseInt(roll_parts[0]);
+        sides = parseInt(roll_parts[1]);
+
+        if (isNaN(rolls) || isNaN(sides)) {
+          errors += "Rolls and sides must be numbers.";
+        }
+
+        // generate dice rolls if there are no errors
+        if (errors.length === 0) {
+          for (i = 0; i < sides; i++) {
+            content.push(Roller.Roll.create({
+              diceNumber: i + 1,
+              totalRolls: rolls
+            }));
+          }
+
+          // roll the dice
+          for (i = 0; i < rolls; i ++) {
+            rnd = Math.floor(Math.random() * sides);
+            content[rnd].incrementProperty("numberOfRolls");
+          }
+        }
+      }
+
+      this.set("content", content);
+      this.set("errors", errors);
+    }
+  }
+});
