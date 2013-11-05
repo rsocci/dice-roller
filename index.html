@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>An Ember Dice Roller</title>
+  </head>
+
+  <body>
+    <script type="text/x-handlebars" id="application">
+      <h1>Dice Roller</h1>
+      {{outlet}}
+    </script>
+    <script type="text/x-handlebars" id="index">
+      {{#linkTo 'roll'}}Start rolling dice!{{/linkTo}}
+    </script>
+    <script type="text/javascript" src="vendor/jquery.js"></script>
+    <script type="text/javascript" src="vendor/handlebars.js"></script>
+    <script type="text/javascript" src="vendor/ember.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
