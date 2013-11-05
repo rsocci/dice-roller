@@ -28,3 +28,13 @@ Roller.IndexRoute = Ember.Route.extend({
     this.transitionTo('roll');
   }
 });
+
+Roller.RollRoute = Ember.Route.extend({
+  model: function() {
+    return [];
+  },
+
+  setupController: function(controller, model) {
+    controller.set("content", model);
+  }
+});
