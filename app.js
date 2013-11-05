@@ -10,3 +10,9 @@ var Roller = Ember.Application.create({
 Roller.Router.map(function() {
   this.resource('roll');
 });
+
+Roller.IndexRoute = Ember.Route.extend({
+  redirect: function() {
+    this.transitionTo('roll');
+  }
+});
