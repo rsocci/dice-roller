@@ -21,7 +21,7 @@
         roll three six sided dice.
       </p>
 
-      {{input valueBinding="rollString" placeholder="Enter your dice roll"}}
+      {{view Roller.DiceInputField valueBinding="rollString" action="rollDice" placeholder="Enter your dice roll"}}
       <button {{action "rollDice"}}>Roll Dice</button>
 
       {{#if errors}}
